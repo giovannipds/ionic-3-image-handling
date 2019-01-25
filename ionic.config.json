@@ -1,5 +1,7 @@
 {
   "name": "ionic-3-image-handling",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "ionic-angular"
 }
