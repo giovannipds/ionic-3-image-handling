@@ -8,8 +8,12 @@
 
 <ion-content padding>
 
+  <button (click)="openImagePicker()" ion-button>Open Image Picker</button>
+
+  <button (click)="takePicture()" ion-button>Take Picture</button>
+
   <ion-card *ngFor="let photo of photos">
-    <img src="{{photo}}" />
+    <img src="{{photo}}" alt="{{photo}}" />
   </ion-card>
 
 </ion-content>

@@ -3,6 +3,7 @@ import { NavController } from 'ionic-angular';
 import { ImagePicker } from '@ionic-native/image-picker/ngx';
 import { Crop } from '@ionic-native/crop/ngx';
 import { Camera } from '@ionic-native/camera/ngx';
+import { WebView } from '@ionic-native/ionic-webview/ngx';
 
 @Component({
   selector: 'page-home',
@@ -17,6 +18,7 @@ export class HomePage {
     public imagePicker: ImagePicker,
     public cropService: Crop,
     public camera: Camera,
+    private webview: WebView,
   ) {
 
   }
@@ -38,7 +40,7 @@ export class HomePage {
     return selected_pictures.reduce((promise:any, item:any) => {
       return promise.then((result) => {
         return this.cropService.crop(item, {quality: 75})
-        .then(cropped_image => this.photos.push(cropped_image));
+        .then(cropped_image => this.photos.push(this.webview.convertFileSrc(cropped_image)));
       });
     }, Promise.resolve());
   }
@@ -55,7 +57,7 @@ export class HomePage {
       this.cropService
       .crop(data, {quality: 75})
       .then((newImage) => {
-        this.photos.push(newImage);
+        this.photos.push(this.webview.convertFileSrc(newImage));
       }, error => console.error("Error cropping image", error));
     }, function(error) {
       console.log(error);

@@ -10,6 +10,7 @@ import { HomePage } from '../pages/home/home';
 import { ImagePicker } from '@ionic-native/image-picker/ngx';
 import { Crop } from '@ionic-native/crop/ngx';
 import { Camera } from '@ionic-native/camera/ngx';
+import { WebView } from '@ionic-native/ionic-webview/ngx';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { Camera } from '@ionic-native/camera/ngx';
     Camera,
     StatusBar,
     SplashScreen,
+    WebView,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
