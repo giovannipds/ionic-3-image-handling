@@ -14,6 +14,7 @@ export class HomePage {
     public navCtrl: NavController,
     public imagePicker: ImagePicker,
     public cropService: Crop,
+    public camera: Camera,
   ) {
 
   }
@@ -38,6 +39,25 @@ export class HomePage {
         .then(cropped_image => this.photos.push(cropped_image));
       });
     }, Promise.resolve());
+  }
+
+  takePicture(){
+    let options =
+    {
+      quality: 100,
+      correctOrientation: true
+    };
+    this.camera.getPicture(options)
+    .then((data) => {
+      this.photos = new Array<string>();
+      this.cropService
+      .crop(data, {quality: 75})
+      .then((newImage) => {
+        this.photos.push(newImage);
+      }, error => console.error("Error cropping image", error));
+    }, function(error) {
+      console.log(error);
+    });
   }
 
 }
